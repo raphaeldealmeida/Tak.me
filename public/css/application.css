@@ -1,0 +1,9 @@
+body{
+    background-color: #EDEEF0;
+}
+
+div#content{
+    background-color: #99C;
+    min-height: 200px;
+    border-bottom: 50px solid #669;
+}

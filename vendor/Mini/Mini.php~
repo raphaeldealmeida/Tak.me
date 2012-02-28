@@ -1,0 +1,69 @@
+<?php
+namespace Mini;
+use \InvalidArgumentException as Exception,
+    \RuntimeException;
+
+class Mini{
+    
+    private $rotas;
+
+    public function get($rota, $acao){
+        $this->isCallable($acao);
+        $this->rotas['GET'][$rota] = $acao;
+    }
+    
+    public function post($rota, $acao){
+        $this->isCallable($acao);
+        $this->rotas['POST'][$rota] = $acao;
+    }
+    
+    private function isCallable($acao){
+        if(!is_callable($acao))
+            throw new Exception();
+    }
+    
+    public function run($url) {
+        $method = ($_SERVER['REQUEST_METHOD']== 'POST')? 'POST' : 'GET';
+        try{
+            if(isset($this->rotas[$method][$url])){
+                $acao = $this->rotas[$method][$url];
+                $acao();
+            }else{
+                $this->redirectShorten($url);
+            }
+        } catch (Exception $e){
+            echo $e->getMessage();
+        }
+    }
+    
+    private function redirectShorten($shorten){
+        $info = false;
+        if(substr($shorten, -1) == '+'){
+            $shorten = str_replace('+', '', $shorten);
+            $info = true;
+        }
+        
+        $recurso = new Recurso();
+        $recurso->setShorten($shorten);
+        $recurso->buscar();
+        
+        //var_dump($recurso);
+        $url = $recurso->getUrl();
+        
+        if($info){
+            /**require_once 'Image/QRCode.php';
+            header('Content-Type = image/png');
+            $qrcode = new \Image_QRCode();
+            $im = $qrcode->makeCode("http://tak.me/$shorten", array(
+                'image_type' => 'png',
+            ));
+            */
+            
+            $_POST['url'] = $url;
+            $action = $this->rotas['POST']['/'];
+            $action();
+            return;
+        } 
+        header("Location: $url");
+    }
+}
