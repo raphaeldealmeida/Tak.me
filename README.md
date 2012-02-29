@@ -36,8 +36,8 @@ com o seguinte conteúdo:
 
 Windows
 -------
-wamp - http://gilbertoalbino.com/adicionar-virtual-host-no-windows-com-wamp/
-xamp - http://www.codigosnaweb.com/forum/Criando-um-virtual-host-no-Xampp_26_3538.html
+1. wamp - http://gilbertoalbino.com/adicionar-virtual-host-no-windows-com-wamp/
+2. xamp - http://www.codigosnaweb.com/forum/Criando-um-virtual-host-no-Xampp_26_3538.html
 
 Incluir seguinte linha no arquivo
 
@@ -54,3 +54,4 @@ TODO
 4. Url original na página shorten
 5. Número de visitas
 6. Melhorar algorítimo de encurtamento
+7. Melhorar o designer
