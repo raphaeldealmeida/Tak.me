@@ -40,6 +40,7 @@ wamp - http://gilbertoalbino.com/adicionar-virtual-host-no-windows-com-wamp/
 xamp - http://www.codigosnaweb.com/forum/Criando-um-virtual-host-no-Xampp_26_3538.html
 
 Incluir seguinte linha no arquivo
+
     /etc/hosts (linux)
     c:\windows\system32\drivers\etc\hosts (windows)
     127.0.0.1       Tak.me.local
